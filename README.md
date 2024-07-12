@@ -44,11 +44,9 @@ Dockerがインストールされていることを前提として説明しま�
 
 1. コマンドプロンプトを起動します。
 2. プロジェクトフォルダに移動します。
-3. `./docker-compose-manager.sh start`を実行して、Dockerコンテナを起動します。
+3. `docker compose up -d`を実行して、Dockerコンテナを起動します。
 4. ブラウザで `http://localhost:3000` にアクセスして、掲示板を表示します。
-5. 停止したい場合は、`./docker-compose-manager.sh stop`を実行してください。
-
-`docker-compose-manager.sh`スクリプトを利用せず、`docker-compose up -d`コマンドを利用しても動作確認が可能です。
+5. 停止したい場合は、`docker compose down`を実行してください。
 
 ## 開発環境構築方法
 
