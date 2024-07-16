@@ -34,14 +34,15 @@ defineExpose({ reload });
             <div class="card-body">
                 <h5 class="card-title">{{ forum.title }}</h5>
                 <p class="card-text">{{ forum.content }}</p>
-                <small class="d-block text-end">最終更新: {{ forum.updated_at }}</small>
+                <small class="d-block text-end">最終更新: {{ useNuxtApp().$formatDateToFrontend(forum.updated_at) }}</small>
             </div>
         </div>
         <div v-for="comment in comments" class="card">
             <div class="card-body">
                 <span class="badge bg-light text-dark">No.{{ comment.comment_id }}</span>
                 <p class="card-text">{{ comment.comment }}</p>
-                <small class="d-block text-end">最終更新: {{ comment.updated_at }}</small>
+                <small class="d-block text-end">最終更新: {{ useNuxtApp().$formatDateToFrontend(comment.updated_at)
+                    }}</small>
             </div>
         </div>
     </div>

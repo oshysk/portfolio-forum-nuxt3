@@ -22,7 +22,7 @@ const isApiPending = computed((): boolean => asyncData.status.value == "pending"
             <NuxtLink :to="{ name: 'forums-id', params: { id: forum.forum_id } }"
                 class="d-flex w-100 justify-content-between">
                 {{ forum.title }}
-                <small class="align-self-end">最終更新: {{ forum.updated_at }}</small>
+                <small class="align-self-end">最終更新: {{ useNuxtApp().$formatDateToFrontend(forum.updated_at) }}</small>
             </NuxtLink>
         </li>
     </ul>
