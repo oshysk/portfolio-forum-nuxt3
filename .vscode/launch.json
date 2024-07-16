@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "client",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}/src",
+            "runtimeArgs": [
+                "--remote-debugging-port=9222"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "server: nuxt",
+            "outputCapture": "std",
+            "program": "${workspaceFolder}/src/node_modules/nuxi/bin/nuxi.mjs",
+            "args": [
+                "dev"
+            ],
+            "cwd": "${workspaceFolder}/src"
+        },
+    ],
+    "compounds": [
+        {
+            "name": "fullstack: nuxt",
+            "configurations": [
+                "server: nuxt",
+                "client"
+            ]
+        }
+    ]
+}
