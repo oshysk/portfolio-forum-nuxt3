@@ -36,6 +36,8 @@ const onCreateComment = async (): Promise<void> => {
         );
         // コメント作成に成功した場合は、コメント作成イベントを実行する。
         emit("commentAdded");
+        // コメント作成に成功した場合は、コメントフォームをリセットする。
+        apiParam.value = { comment: "" };
     } catch (error) {
         // API実行に失敗した場合は、エラーメッセージを表示する。
         isApiError.value = true;
