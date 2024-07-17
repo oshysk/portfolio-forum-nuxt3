@@ -29,7 +29,7 @@ const scrollToBottom = () => {
                 <div class="mb-3">
                     <NuxtLink v-bind:to="{ name: 'forums' }">掲示板一覧</NuxtLink>
                     <span class="mx-2 text-700">></span>
-                    <a class="text-700">掲示板</a>
+                    <span class="text-700">掲示板</span>
                 </div>
                 <ForumCommentList v-bind:forumId="forumId" ref="forumCommentListRef" />
             </div>

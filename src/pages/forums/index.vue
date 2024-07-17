@@ -4,7 +4,7 @@
 
             <div class="col-lg-7">
                 <div class="mb-3">
-                    <a class="text-700">掲示板一覧</a>
+                    <span class="text-700">掲示板一覧</span>
                 </div>
                 <ForumList />
             </div>
