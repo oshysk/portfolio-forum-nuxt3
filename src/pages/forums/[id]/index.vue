@@ -1,13 +1,23 @@
 <script setup lang="ts">
 const route = useRoute();
+const router = useRouter();
+
 const forumId: string = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id;
 
 const forumCommentListRef = ref(null);
 const onCommentAdded = () => {
     if (forumCommentListRef.value) {
         forumCommentListRef.value.reload();
+        scrollToBottom();
     }
     return;
+}
+
+const scrollToBottom = () => {
+    const bottomElement = document.getElementById('bottom');
+    if (bottomElement) {
+        bottomElement.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 </script>
 
@@ -28,6 +38,7 @@ const onCommentAdded = () => {
             <div class="col-lg-7">
                 <ForumCommentAddForm v-bind:forumId="forumId" v-on:commentAdded="onCommentAdded" />
             </div>
+            <div id="bottom"></div>
         </div>
     </div>
 </template>
