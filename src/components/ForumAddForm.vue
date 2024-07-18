@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Forum, ForumAdd } from '@/interfaces';
+const router = useRouter();
 
 // 画面で使用する変数の定義
 const isApiPending = ref(false);
@@ -7,30 +8,30 @@ const isApiError = ref(false);
 const apiParam = ref<ForumAdd>({ title: "", content: "" });
 
 // 掲示板作成関数の定義
-const apiUrl = useNuxtApp().$apiClient();
+const apiUrl: string = useNuxtApp().$apiClient();
 const onCreateForum = async (): Promise<void> => {
     // 画面で使用する変数の初期化
     isApiError.value = false;
     isApiPending.value = true;
 
-    // 掲示板作成APIの実行
-    const asyncData = await useFetch<Forum>(
-        `${apiUrl}/forums`,
-        {
-            method: "POST",
-            body: apiParam
-        }
-    );
-    isApiPending.value = false;
-
-    // API実行に失敗した場合は、エラーメッセージを表示する。
-    if (asyncData.error.value != null) {
+    try {
+        // 掲示板作成APIの実行
+        const forum: Forum = await $fetch(
+            `${apiUrl}/forums`,
+            {
+                method: "POST",
+                body: apiParam.value
+            }
+        );
+        // 掲示板作成に成功した場合は、掲示板詳細画面に遷移する。
+        const forumId: number = forum.forum_id;
+        router.push({ name: "forums-id", params: { id: forumId } });
+    } catch (error) {
+        // API実行に失敗した場合は、エラーメッセージを表示する。
         isApiError.value = true;
-        return;
+    } finally {
+        isApiPending.value = false;
     }
-
-    // 掲示板作成に成功した場合は、掲示板詳細画面に遷移する。
-    router.push({ name: "forums-id", params: { id: asyncData.data.value?.forum_id } });
     return;
 };
 </script>

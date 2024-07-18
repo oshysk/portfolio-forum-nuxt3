@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommentAdd } from '@/interfaces';
+import type { CommentAdd, Comments } from '@/interfaces';
 
 // Propsの定義
 interface Props {
@@ -19,30 +19,31 @@ const isApiError = ref(false);
 const apiParam = ref<CommentAdd>({ comment: "" });
 
 // コメント作成関数の定義
-const apiUrl = useNuxtApp().$apiClient();
+const apiUrl: string = useNuxtApp().$apiClient();
 const onCreateComment = async (): Promise<void> => {
     // 画面で使用する変数の初期化
     isApiError.value = false;
     isApiPending.value = true;
 
-    // 掲示板コメント作成APIの実行
-    const asyncData = await useFetch<{}>(
-        `${apiUrl}/forums/${props.forumId}/comments`,
-        {
-            method: "POST",
-            body: apiParam
-        }
-    );
-    isApiPending.value = false;
-
-    // API実行に失敗した場合は、エラーメッセージを表示する。
-    if (asyncData.error.value != null) {
+    try {
+        // 掲示板コメント作成APIの実行
+        await $fetch<Comments>(
+            `${apiUrl}/forums/${props.forumId}/comments`,
+            {
+                method: "POST",
+                body: apiParam.value
+            }
+        );
+        // コメント作成に成功した場合は、コメント作成イベントを実行する。
+        emit("commentAdded");
+        // コメント作成に成功した場合は、コメントフォームをリセットする。
+        apiParam.value = { comment: "" };
+    } catch (error) {
+        // API実行に失敗した場合は、エラーメッセージを表示する。
         isApiError.value = true;
-        return;
+    } finally {
+        isApiPending.value = false;
     }
-
-    // コメント作成に成功した場合は、コメント作成イベントを実行する。
-    emit("commentAdded");
     return;
 };
 </script>

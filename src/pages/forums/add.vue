@@ -45,22 +45,12 @@ const onSubmit = async (): Promise<void> => {
     <div class="container">
         <div class="row justify-content-center" data-zanim-timeline="{}" data-zanim-trigger="scroll">
             <div class="col-lg-7">
+                <div class="mb-3">
+                    <NuxtLink v-bind:to="{ name: 'forums' }">掲示板一覧</NuxtLink>
+                    <span class="mx-2 text-700">></span>
+                    <span class="text-700">掲示板作成</span>
+                </div>
                 <ForumAddForm />
-                <!-- <form v-on:submit.prevent="onSubmit">
-                    <h2>掲示板作成</h2>
-                    <div v-if="isApiError" class="alert alert-danger" role="alert">掲示板の作成に失敗しました。</div>
-                    <div class="form-group mb-3">
-                        <input class="form-control" type="text" placeholder="掲示板タイトル" maxlength="20"
-                            v-model="apiParam.title" />
-                    </div>
-                    <div class="form-group mb-3">
-                        <textarea class="form-control" rows="10" placeholder="掲示板の内容" maxlength="100" required
-                            v-model="apiParam.content"></textarea>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-dark btn-block hvr-sweep-top">投稿</button>
-                    </div>
-                </form> -->
             </div>
         </div>
     </div>
