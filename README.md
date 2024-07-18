@@ -1,23 +1,28 @@
 # ポートフォリオ用のNuxt3で作成した掲示板WEBサイト
 
-![サイトのイメージ画像](images/ReadmeSiteImage.png)
-
 ## 概要
 
-Nuxt3で作成した掲示板WEBサイトです。  
-ローカル環境とDocker環境で実行可能です。
+ローカル環境とDocker環境で実行可能な、Nuxt3で作成した掲示板WEBサイトです。  
 
 ## 使用技術
 
 - Nuxt3
-- Vue3
 - TypeScript
-- Bootstrap5
 - Docker
+- Bootstrap5
 
 ## デモ
 
+### 掲示板一覧
+
+![掲示板一覧画面の画像](images/ReadmeSiteImage.png)
+
+### 掲示板詳細
+
 ![掲示板詳細画面の画像](images/ReadmeForumDetailImage.png)
+
+### 掲示板作成
+
 ![掲示板作成画面の画像](images/ReadmeForumAddImage.png)
 
 ## 動作確認方法
